@@ -17,6 +17,12 @@
     <input type="text" class="form-control" v-model="criterioDeBusqueda"
         placeholder="Ingresar un criterio de busqueda...">
     <br>
+    <input type="text" class="form-control"  v-model="criterioDeBusquedaNombre"
+    placeholder="Ingresar un criterio de busqueda por nombre y apellido...">
+    <br>
+    <input type="text" class="form-control" v-model="criterioDeBusquedaDni"
+    placeholder="Ingresar un criterio de busqueda por dni...">
+    <br>
     <div class="card-deck m-0">
         <div class="row">
             <div class="col" v-for="persona in personasFiltradas">
@@ -40,6 +46,8 @@
         el: '#app',
         data: {
             criterioDeBusqueda: '',
+            criterioDeBusquedaNombre: '',
+            criterioDeBusquedaDni: '',
             //Aquí, en este array es donde tienen que agregar su información
             personas: [
                 {
@@ -49,10 +57,22 @@
                     dni: "20442873"
                 },
                 {
-                    nombre: "...",
-                    apellido: "...",
-                    correo: "...",
-                    dni: "..."
+                    nombre: "Matias",
+                    apellido: "Habibo",
+                    correo: "mmhh@gmail.com",
+                    dni: "11112222"
+                },
+                {
+                    nombre: "Jose",
+                    apellido: "Lopez",
+                    correo: "jjll@gmail.com",
+                    dni: "88889999"
+                },
+                {
+                    nombre: "Manuel",
+                    apellido: "Rodriguez",
+                    correo: "manu@gmail.com",
+                    dni: "55554444"
                 },
             ]
 
@@ -61,10 +81,19 @@
             personasFiltradas() {
                 return this.personas.filter((persona) => {
                     let registroCompleto = `${persona.nombre} ${persona.apellido} ${persona.dni} ${persona.correo}`
-                    return registroCompleto.toLowerCase().includes(this.criterioDeBusqueda.toLowerCase())
+                    let registroCompleto1 = `${persona.nombre} ${persona.apellido}`
+                    let registroCompleto2 = `${persona.dni}`
+                    return registroCompleto.toLowerCase().includes(this.criterioDeBusqueda.toLowerCase()) && 
+                    registroCompleto1.toLowerCase().includes(this.criterioDeBusquedaNombre.toLowerCase()) &&
+                    registroCompleto2.toLowerCase().includes(this.criterioDeBusquedaDni.toLowerCase())
                 });
-            }
-        },
+            },
+        //     checkLength(el) {
+        //         if (el.value.length != 4) {
+        //             alert("Minimum 10 numbers are accepted");
+        //             }
+        // },
+    },
         methods: {
             getNombreCompleto(persona) {
                 return `${persona.nombre} ${persona.apellido}`
