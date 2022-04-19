@@ -15,10 +15,6 @@
 
 <div class="container-fluid mt-3" id="app">
 
-    <!-- INTENTE DE VARIAS FORMAS HACER LA VALIDACION DE 3 LETRAS PERO NO ME FUNCIONARON -->
-    <!-- NO ENCONTRE NINGUNA CLASE DE BOOTSTRAP QUE ME LO RESUELVA FACILMENTE -->
-
-
     <input type="text" class="form-control" v-model="criterioDeBusqueda"
         placeholder="Ingresar un criterio de busqueda...">
     <br>
@@ -29,6 +25,9 @@
     placeholder="Ingresar un criterio de busqueda por dni...">
     <br>
     <div class="card-deck m-0">
+        <!-- No logre hacer funcionar el if de la funcion en computed. Si le sacaba el if mostraba el -->
+        <!-- falso y por ende el cartel de alert, pero el .length aparentemente nunca lo reonocio -->
+    <!-- <div v-if="checkLength"> -->
         <div class="row">
             <div class="col" v-for="persona in personasFiltradas">
                 <div class="card mb-3">
@@ -40,6 +39,10 @@
                 </div>
             </div>
         </div>
+    <!-- </div> -->
+    <!-- <div v-else>
+        <h3 class="alert alert-danger">Ingrese minimo 3 letras</h3>
+    </div> -->
     </div>
 
 </div>
@@ -93,6 +96,14 @@
                     registroCompleto2.toLowerCase().includes(this.criterioDeBusquedaDni.toLowerCase())
                 });
             },
+            // checkLength(){
+            //     dev = false;
+            //     if(criterioDeBusquedaNombre.length > 3 && criterioDeBusquedaDni > 3 && criterioDeBusqueda > 3){
+            //         dev = true;
+            //     }
+            //     return dev;
+            // }
+
     },
         methods: {
             getNombreCompleto(persona) {
